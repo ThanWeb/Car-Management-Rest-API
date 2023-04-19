@@ -2,10 +2,15 @@
     "name": "car-management-api",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "./app/index.js",
     "scripts": {
-        "dev": "nodemon ./index.js",
-        "start": "node ./index.js"
+        "dev": "nodemon -q bin/www",
+        "start": "node bin/www",
+        "db:create": "sequelize db:create",
+        "db:drop": "sequelize db:drop",
+        "db:migrate": "sequelize db:migrate",
+        "db:rollback": "sequelize db:migrate:undo",
+        "db:seed": "sequelize db:seed:all"
     },
     "author": "",
     "license": "ISC",
