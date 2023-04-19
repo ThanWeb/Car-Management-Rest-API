@@ -10,9 +10,10 @@
         "db:drop": "sequelize db:drop",
         "db:migrate": "sequelize db:migrate",
         "db:rollback": "sequelize db:migrate:undo",
-        "db:seed": "sequelize db:seed:all"
+        "db:seed": "sequelize db:seed:all",
+        "lint": "eslint ./"
     },
-    "author": "",
+    "author": "Hans Rio",
     "license": "ISC",
     "dependencies": {
         "express": "^4.18.2",
