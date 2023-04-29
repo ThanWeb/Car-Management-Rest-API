@@ -1,7 +1,5 @@
-const main = require('./main')
-const cars = require('./carsController')
+const cars = require('./partial/carsController')
 
 module.exports = {
-    main,
     cars
 }

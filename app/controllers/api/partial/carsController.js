@@ -1,4 +1,4 @@
-const carsService = require('../../services/carsService')
+const carsService = require('../../../services/carsService')
 
 module.exports = {
     list (req, res) {
@@ -6,7 +6,7 @@ module.exports = {
             .list()
             .then(({ data, count }) => {
                 res.status(200).json({
-                    status: 'SUCCES',
+                    status: 'SUCCESS',
                     data: { cars: data },
                     meta: { total: count }
                 })
