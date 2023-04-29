@@ -1,12 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
-router.post('/register', (req, res, next) => {
-    res.json({
-        status: 201,
-        message: 'Register'
-    })
-})
+const controllers = require('../../app/controllers')
+
+router.post('/register', controllers.api.users.register)
 
 router.post('/admin/login', (req, res, next) => {
     res.json({
