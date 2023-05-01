@@ -21,7 +21,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER
         },
         name: DataTypes.STRING,
-        userId: DataTypes.INTEGER
+        owner: DataTypes.INTEGER,
+        lastEditedBy: DataTypes.INTEGER,
+        deletedBy: DataTypes.INTEGER,
+        isDeleted: DataTypes.BOOLEAN
     }, {
         sequelize,
         modelName: 'Cars'

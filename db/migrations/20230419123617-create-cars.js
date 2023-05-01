@@ -12,8 +12,17 @@ module.exports = {
             name: {
                 type: Sequelize.STRING
             },
-            userId: {
+            owner: {
                 type: Sequelize.INTEGER
+            },
+            lastEditedBy: {
+                type: Sequelize.INTEGER
+            },
+            deletedBy: {
+                type: Sequelize.INTEGER
+            },
+            isDeleted: {
+                type: Sequelize.BOOLEAN
             },
             createdAt: {
                 allowNull: false,

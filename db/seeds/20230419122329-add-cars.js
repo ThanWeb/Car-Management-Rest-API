@@ -8,13 +8,17 @@ module.exports = {
             [
                 {
                     name: 'Toyota Supra',
-                    userId: 1,
+                    owner: 1,
+                    lastEditedBy: 1,
+                    isDeleted: false,
                     createdAt: new Date(),
                     updatedAt: new Date()
                 },
                 {
                     name: 'Nissan Skyline GTR',
-                    userId: 1,
+                    owner: 1,
+                    lastEditedBy: 1,
+                    isDeleted: false,
                     createdAt: new Date(),
                     updatedAt: new Date()
                 }
