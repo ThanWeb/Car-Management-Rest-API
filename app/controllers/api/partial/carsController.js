@@ -7,7 +7,7 @@ module.exports = {
             .then(({ data, count }) => {
                 res.status(200).json({
                     status: 'SUCCESS',
-                    data: { cars: data },
+                    cars: data,
                     meta: { total: count }
                 })
             })

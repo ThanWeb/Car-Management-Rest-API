@@ -1,0 +1,84 @@
+openapi: 3.0.0
+info:
+  title: Car Management Rest API
+  version: 0.0.1
+tags:
+  - name: Car
+    description: Contain all services for create, read, update or delete data of cars
+  - name: User
+    description: Contain all services for login, register or logout account
+paths:
+  /cars: 
+    get:
+      tags:
+      - Car
+      responses:
+        "200":
+          description: List of cars
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: 'SUCCESS'
+                  cars:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: 'Toyota Avanza'
+                        owner:
+                          type: integer
+                          example: 1
+                        lastEditedBy:
+                          type: integer
+                          example: 1
+                        deletedBy:
+                          type: integer
+                          example: 1
+                        isDeleted:
+                          type: boolean
+                          example: false
+                        createdAt:
+                          type: date
+                          example: 2023-05-01T07:52:31.130Z
+                        updatedAt:
+                          type: date
+                          example: 2023-05-01T07:52:31.130Z
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                        example: 2
+  /users/profile:
+    get:
+      tags:
+      - User
+  /users/token:
+    get:
+      tags:
+      - User
+  /users/login:
+    post:
+      tags:
+      - User
+  /users/register:
+    post:
+      tags:
+      - User
+  /users/register-admin:
+    post:
+      tags:
+      - User
+  /users/logout:
+    delete:
+      tags:
+      - User
