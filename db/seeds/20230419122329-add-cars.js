@@ -8,6 +8,9 @@ module.exports = {
             [
                 {
                     name: 'Toyota Supra',
+                    type: 'Sport',
+                    size: 'Medium',
+                    rentPerDay: 1000000,
                     owner: 1,
                     lastEditedBy: 1,
                     isDeleted: false,
@@ -16,6 +19,9 @@ module.exports = {
                 },
                 {
                     name: 'Nissan Skyline GTR',
+                    type: 'Sport',
+                    size: 'Medium',
+                    rentPerDay: 1200000,
                     owner: 1,
                     lastEditedBy: 1,
                     isDeleted: false,

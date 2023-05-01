@@ -21,6 +21,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER
         },
         name: DataTypes.STRING,
+        type: DataTypes.STRING,
+        size: DataTypes.STRING,
+        rentPerDay: DataTypes.INTEGER,
         owner: DataTypes.INTEGER,
         lastEditedBy: DataTypes.INTEGER,
         deletedBy: DataTypes.INTEGER,

@@ -12,6 +12,15 @@ module.exports = {
             name: {
                 type: Sequelize.STRING
             },
+            type: {
+                type: Sequelize.STRING
+            },
+            size: {
+                type: Sequelize.STRING
+            },
+            rentPerDay: {
+                type: Sequelize.INTEGER
+            },
             owner: {
                 type: Sequelize.INTEGER
             },
