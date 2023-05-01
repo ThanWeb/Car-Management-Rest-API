@@ -9,40 +9,6 @@ router.post('/login', controllers.api.users.login)
 router.get('/token', controllers.api.users.refreshToken)
 router.delete('/logout', controllers.api.users.logout)
 router.post('/register-admin', controllers.api.users.registerAdmin)
-
-// router.post('/admin/login', (req, res, next) => {
-//     res.json({
-//         status: 200,
-//         message: 'Login Admin'
-//     })
-// })
-
-// router.post('/superadmin/login', (req, res, next) => {
-//     res.json({
-//         status: 200,
-//         message: 'Login Super Admin'
-//     })
-// })
-
-// router.post('/member/login', (req, res, next) => {
-//     res.json({
-//         status: 200,
-//         message: 'Login Member'
-//     })
-// })
-
-router.post('/add/admin', (req, res, next) => {
-    res.json({
-        status: 200,
-        message: 'Add Admin'
-    })
-})
-
-router.get('/profile', (req, res, next) => {
-    res.json({
-        status: 200,
-        message: 'Profile'
-    })
-})
+router.get('/profile', controllers.api.users.profile)
 
 module.exports = router

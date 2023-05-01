@@ -68,7 +68,7 @@ module.exports = {
                 } else {
                     const { id } = user
                     const accessToken = jwt.sign({ id, email }, process.env.ACCESS_TOKEN_SECRET, {
-                        expiresIn: '20s'
+                        expiresIn: '10m'
                     })
                     const refreshToken = jwt.sign({ id, email }, process.env.REFRESH_TOKEN_SECRET, {
                         expiresIn: '1d'
@@ -95,6 +95,7 @@ module.exports = {
             const refreshToken = req.cookies.refreshToken
             if (refreshToken === null || refreshToken === undefined) {
                 return res.status(401).json({
+                    status: 'FAILED',
                     message: 'Silahkan Login'
                 })
             }
@@ -102,6 +103,7 @@ module.exports = {
             const user = await usersService.findRefreshToken(refreshToken)
             if (!user[0]) {
                 return res.status(403).json({
+                    status: 'FAILED',
                     message: 'Sesi Login telah expired, silahkan login ulang'
                 })
             }
@@ -109,13 +111,14 @@ module.exports = {
             jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
                 if (err) {
                     return res.status(403).json({
+                        status: 'FAILED',
                         message: 'Sesi Login telah expired, silahkan login ulang'
                     })
                 }
 
                 const { id, email } = user[0]
                 const accessToken = jwt.sign({ id, email }, process.env.ACCESS_TOKEN_SECRET, {
-                    expiresIn: '20s'
+                    expiresIn: '10m'
                 })
                 res.json({ accessToken })
             })
@@ -126,14 +129,16 @@ module.exports = {
     async logout (req, res) {
         const refreshToken = req.cookies.refreshToken
         if (refreshToken === null || refreshToken === undefined) {
-            return res.status(204).json({
+            return res.status(400).json({
+                status: 'FAILED',
                 message: 'Tidak ada aktivitas login'
             })
         }
 
         const user = await usersService.findRefreshToken(refreshToken)
         if (!user[0]) {
-            return res.status(204).json({
+            return res.status(400).json({
+                status: 'FAILED',
                 message: 'Tidak ada aktivitas login'
             })
         }
@@ -142,7 +147,8 @@ module.exports = {
         try {
             await usersService.logout(id)
             return res.status(200).json({
-                message: 'Logout sukses'
+                status: 'SUCCESS',
+                message: 'Berhasil logout'
             })
         } catch (err) {
             console.log(err)
@@ -188,6 +194,36 @@ module.exports = {
                         message: err.message
                     })
                 })
+        }
+    },
+    async profile (req, res) {
+        try {
+            const refreshToken = req.cookies.refreshToken
+            if (refreshToken === null || refreshToken === undefined) {
+                return res.status(401).json({
+                    status: 'FAILED',
+                    message: 'Silahkan Login'
+                })
+            }
+
+            const user = await usersService.findRefreshToken(refreshToken)
+            if (!user[0]) {
+                return res.status(403).json({
+                    status: 'FAILED',
+                    message: 'Sesi Login telah expired, silahkan login ulang'
+                })
+            } else {
+                const { email, role } = user[0]
+                return res.status(200).json({
+                    sstatus: 'SUCCESS',
+                    profile: {
+                        email,
+                        role
+                    }
+                })
+            }
+        } catch (err) {
+            console.log(err)
         }
     }
 }
