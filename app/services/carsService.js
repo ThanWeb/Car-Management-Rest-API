@@ -13,5 +13,8 @@ module.exports = {
         } catch (err) {
             console.log(err)
         }
+    },
+    add (requestBody) {
+        return carsRepository.add(requestBody)
     }
 }

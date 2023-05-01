@@ -14,5 +14,8 @@ module.exports = {
     },
     getTotalCars () {
         return Cars.count()
+    },
+    add (createArgs) {
+        return Cars.create(createArgs)
     }
 }
