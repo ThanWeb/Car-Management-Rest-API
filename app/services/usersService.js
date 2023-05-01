@@ -16,5 +16,11 @@ module.exports = {
     },
     findEmail (email) {
         return usersRepository.findEmail(email)
+    },
+    findRefreshToken (refreshToken) {
+        return usersRepository.findRefreshToken(refreshToken)
+    },
+    updateToken (newValue) {
+        return usersRepository.updateToken(newValue)
     }
 }

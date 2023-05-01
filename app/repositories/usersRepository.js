@@ -10,5 +10,16 @@ module.exports = {
     async findEmail (email) {
         const emailExists = await Users.findOne({ where: { email } })
         return emailExists
+    },
+    async findRefreshToken (refreshToken) {
+        const user = await Users.findAll({ where: { refreshToken } })
+        console.log(user)
+        return user
+    },
+    async updateToken (newValue) {
+        const { id, refreshToken } = newValue
+        await Users.update({ refreshToken },
+            { where: { id } }
+        )
     }
 }
