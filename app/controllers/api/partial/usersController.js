@@ -122,5 +122,30 @@ module.exports = {
         } catch (err) {
             console.log(err)
         }
+    },
+    async logout (req, res) {
+        const refreshToken = req.cookies.refreshToken
+        if (refreshToken === null || refreshToken === undefined) {
+            return res.status(204).json({
+                message: 'Tidak ada aktivitas login'
+            })
+        }
+
+        const user = await usersService.findRefreshToken(refreshToken)
+        if (!user[0]) {
+            return res.status(204).json({
+                message: 'Tidak ada aktivitas login'
+            })
+        }
+
+        const { id } = user[0]
+        try {
+            await usersService.logout(id)
+            return res.status(200).json({
+                message: 'Logout sukses'
+            })
+        } catch (err) {
+            console.log(err)
+        }
     }
 }

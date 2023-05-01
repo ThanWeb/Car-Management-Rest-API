@@ -22,5 +22,8 @@ module.exports = {
     },
     updateToken (newValue) {
         return usersRepository.updateToken(newValue)
+    },
+    logout (id) {
+        return usersRepository.logout(id)
     }
 }

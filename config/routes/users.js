@@ -7,6 +7,7 @@ const controllers = require('../../app/controllers')
 router.post('/register', controllers.api.users.register)
 router.post('/login', controllers.api.users.login)
 router.get('/token', controllers.api.users.refreshToken)
+router.delete('/logout', controllers.api.users.logout)
 
 // router.post('/admin/login', (req, res, next) => {
 //     res.json({
@@ -40,13 +41,6 @@ router.get('/profile', (req, res, next) => {
     res.json({
         status: 200,
         message: 'Profile'
-    })
-})
-
-router.post('/logout', (req, res, next) => {
-    res.json({
-        status: 200,
-        message: 'Delete'
     })
 })
 

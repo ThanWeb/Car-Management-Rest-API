@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
-const verifyToken = require('../../app/middlewares/verifyToken')
+// const verifyToken = require('../../app/middlewares/verifyToken')
 const controllers = require('../../app/controllers')
 
-router.get('/', verifyToken, controllers.api.cars.list)
+router.get('/', controllers.api.cars.list)
 
 router.get('/:id', (req, res, next) => {
     res.json({

@@ -20,5 +20,12 @@ module.exports = {
         await Users.update({ refreshToken },
             { where: { id } }
         )
+    },
+    async logout (id) {
+        Users.update({ refreshToken: null }, {
+            where: {
+                id
+            }
+        })
     }
 }
