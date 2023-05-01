@@ -92,7 +92,6 @@ module.exports = {
     },
     async refreshToken (req, res) {
         try {
-            console.log(req.cookies)
             const refreshToken = req.cookies.refreshToken
             if (refreshToken === null || refreshToken === undefined) {
                 return res.status(401).json({

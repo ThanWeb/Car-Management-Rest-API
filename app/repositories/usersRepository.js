@@ -13,7 +13,6 @@ module.exports = {
     },
     async findRefreshToken (refreshToken) {
         const user = await Users.findAll({ where: { refreshToken } })
-        console.log(user)
         return user
     },
     async updateToken (newValue) {
