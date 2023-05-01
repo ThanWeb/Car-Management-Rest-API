@@ -147,5 +147,47 @@ module.exports = {
         } catch (err) {
             console.log(err)
         }
+    },
+    async registerAdmin (req, res) {
+        const { email, password, confirmPassword } = req.body
+
+        if (!email || !password || !confirmPassword) {
+            res.status(400).json({
+                status: 'FAILED',
+                message: 'Lengkapi Email, Password dan Konfirmasi password'
+            })
+        } else if (!validateEmail(email)) {
+            res.status(400).json({
+                status: 'FAILED',
+                message: 'Email tidak valid'
+            })
+        } else if (await usersService.findEmail(email)) {
+            res.status(400).json({
+                status: 'FAILED',
+                message: 'Email sudah terdaftar'
+            })
+        } else if (password !== confirmPassword) {
+            res.status(400).json({
+                status: 'FAILED',
+                message: 'Password dan Konfirmasi Password berbeda'
+            })
+        } else {
+            const salt = await bcryptjs.genSalt()
+            const hashPassword = await bcryptjs.hash(password, salt)
+            usersService
+                .create({ email, password: hashPassword, confirmPassword: hashPassword, role: 'admin' })
+                .then((account) => {
+                    res.status(201).json({
+                        status: 'SUCCESS',
+                        data: account
+                    })
+                })
+                .catch((err) => {
+                    res.status(422).json({
+                        status: 'FAILED',
+                        message: err.message
+                    })
+                })
+        }
     }
 }
