@@ -35,7 +35,10 @@ module.exports = {
                 .then((account) => {
                     res.status(201).json({
                         status: 'SUCCESS',
-                        data: account
+                        data: {
+                            email: account.email,
+                            role: account.role
+                        }
                     })
                 })
                 .catch((err) => {
@@ -155,7 +158,10 @@ module.exports = {
         }
     },
     async registerAdmin (req, res) {
+        const refreshToken = req.cookies.refreshToken
         const { email, password, confirmPassword } = req.body
+        const user = await usersService.findRefreshToken(refreshToken)
+        const { role } = user[0]
 
         if (!email || !password || !confirmPassword) {
             res.status(400).json({
@@ -177,6 +183,11 @@ module.exports = {
                 status: 'FAILED',
                 message: 'Password dan Konfirmasi Password berbeda'
             })
+        } else if (role !== 'superadmin') {
+            res.status(401).json({
+                status: 'FAILED',
+                message: 'Hanya akun dengan role superadmin yang bisa membuat akun admin'
+            })
         } else {
             const salt = await bcryptjs.genSalt()
             const hashPassword = await bcryptjs.hash(password, salt)
@@ -185,7 +196,10 @@ module.exports = {
                 .then((account) => {
                     res.status(201).json({
                         status: 'SUCCESS',
-                        data: account
+                        data: {
+                            email: account.email,
+                            role: account.role
+                        }
                     })
                 })
                 .catch((err) => {

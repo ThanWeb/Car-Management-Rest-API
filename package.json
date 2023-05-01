@@ -11,6 +11,7 @@
         "db:migrate": "sequelize db:migrate",
         "db:rollback": "sequelize db:migrate:undo",
         "db:seed": "sequelize db:seed:all",
+        "db:remake": "npm run db:drop && npm run db:create && npm run db:migrate && npm run db:seed",
         "lint": "eslint ./"
     },
     "author": "Hans Rio",
