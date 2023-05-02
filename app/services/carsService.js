@@ -16,5 +16,8 @@ module.exports = {
     },
     add (requestBody) {
         return carsRepository.add(requestBody)
+    },
+    detail (id) {
+        return carsRepository.detail(id)
     }
 }

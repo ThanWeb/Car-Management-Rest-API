@@ -17,5 +17,14 @@ module.exports = {
     },
     add (createArgs) {
         return Cars.create(createArgs)
+    },
+    detail (id) {
+        return Cars.findOne({
+            attributes: ['name', 'type', 'size', 'rentPerDay'],
+            where: {
+                id,
+                isDeleted: false
+            }
+        })
     }
 }
