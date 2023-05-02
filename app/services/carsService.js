@@ -19,5 +19,8 @@ module.exports = {
     },
     detail (id) {
         return carsRepository.detail(id)
+    },
+    edit (id, newValues) {
+        return carsRepository.edit(id, newValues)
     }
 }

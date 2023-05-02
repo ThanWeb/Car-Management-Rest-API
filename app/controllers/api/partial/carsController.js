@@ -105,5 +105,46 @@ module.exports = {
         } catch (err) {
             console.log(err)
         }
+    },
+    async edit (req, res) {
+        const carId = req.params.id
+        const oldValues = await carsService.detail(carId)
+        const { name, type, size, rentPerDay } = req.body
+        const refreshToken = req.cookies.refreshToken
+        const user = await usersService.findRefreshToken(refreshToken)
+
+        if (!user[0]) {
+            return res.status(403).json({
+                status: 'FAILED',
+                message: 'Sesi login telah expired, silahkan login ulang'
+            })
+        }
+
+        if (!oldValues) {
+            return res.status(404).json({
+                status: 'FAILED',
+                message: 'Mobil tidak ditemukan'
+            })
+        }
+
+        const { role } = user[0]
+        const lastEditorId = user[0].id
+        if (typeof (rentPerDay) !== 'number') {
+            res.status(400).json({
+                status: 'FAILED',
+                message: 'Nilai Rent Per Day harus angka'
+            })
+        } else if (role !== 'admin' && role !== 'superadmin') {
+            res.status(401).json({
+                status: 'FAILED',
+                message: 'Hanya akun dengan role admin dan superadmin yang bisa mengubah data mobil'
+            })
+        } else {
+            await carsService.edit(carId, { name, type, size, rentPerDay, lastEditedBy: lastEditorId })
+            res.status(202).json({
+                status: 'SUCCESS',
+                message: 'Data mobil berhasil diubah'
+            })
+        }
     }
 }

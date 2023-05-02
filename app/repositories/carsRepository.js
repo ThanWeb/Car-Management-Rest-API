@@ -26,5 +26,13 @@ module.exports = {
                 isDeleted: false
             }
         })
+    },
+    edit (id, newValues) {
+        Cars.update({ ...newValues }, {
+            where: {
+                id,
+                isDeleted: false
+            }
+        })
     }
 }
