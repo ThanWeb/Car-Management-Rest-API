@@ -24,7 +24,7 @@ module.exports = {
         const refreshToken = req.cookies.refreshToken
         const user = await usersService.findRefreshToken(refreshToken)
         if (!user[0]) {
-            return res.status(403).json({
+            return res.status(401).json({
                 status: 'FAILED',
                 message: 'Sesi login telah expired, silahkan login ulang'
             })
@@ -73,7 +73,7 @@ module.exports = {
             const refreshToken = req.cookies.refreshToken
             const user = await usersService.findRefreshToken(refreshToken)
             if (!user[0]) {
-                return res.status(403).json({
+                return res.status(401).json({
                     status: 'FAILED',
                     message: 'Sesi login telah expired, silahkan login ulang'
                 })
@@ -115,7 +115,7 @@ module.exports = {
             const user = await usersService.findRefreshToken(refreshToken)
 
             if (!user[0]) {
-                return res.status(403).json({
+                return res.status(401).json({
                     status: 'FAILED',
                     message: 'Sesi login telah expired, silahkan login ulang'
                 })
@@ -159,7 +159,7 @@ module.exports = {
             const user = await usersService.findRefreshToken(refreshToken)
 
             if (!user[0]) {
-                return res.status(403).json({
+                return res.status(401).json({
                     status: 'FAILED',
                     message: 'Sesi login telah expired, silahkan login ulang'
                 })
@@ -177,7 +177,7 @@ module.exports = {
             if (role !== 'admin' && role !== 'superadmin') {
                 res.status(401).json({
                     status: 'FAILED',
-                    message: 'Hanya akun dengan role admin dan superadmin yang bisa mengubah data mobil'
+                    message: 'Hanya akun dengan role admin dan superadmin yang bisa menghapus data mobil'
                 })
             } else {
                 await carsService.delete(carId, deletedBy)

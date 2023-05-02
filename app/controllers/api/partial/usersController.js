@@ -105,7 +105,7 @@ module.exports = {
 
             const user = await usersService.findRefreshToken(refreshToken)
             if (!user[0]) {
-                return res.status(403).json({
+                return res.status(401).json({
                     status: 'FAILED',
                     message: 'Sesi login telah expired, silahkan login ulang'
                 })
@@ -113,7 +113,7 @@ module.exports = {
 
             jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
                 if (err) {
-                    return res.status(403).json({
+                    return res.status(401).json({
                         status: 'FAILED',
                         message: 'Sesi login telah expired, silahkan login ulang'
                     })
@@ -216,7 +216,7 @@ module.exports = {
             const refreshToken = req.cookies.refreshToken
             const user = await usersService.findRefreshToken(refreshToken)
             if (!user[0]) {
-                return res.status(403).json({
+                return res.status(401).json({
                     status: 'FAILED',
                     message: 'Sesi login telah expired, silahkan login ulang'
                 })

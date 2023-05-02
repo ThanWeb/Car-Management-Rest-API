@@ -4,7 +4,6 @@ const cors = require('cors')
 const dotenv = require('dotenv')
 const cookieParser = require('cookie-parser')
 const swaggerUi = require('swagger-ui-express')
-const YAML = require('yamljs')
 
 dotenv.config()
 const app = express()
@@ -12,10 +11,11 @@ const corsOption = {
     credentials: true,
     origin: 'http://localhost:3000'
 }
+
+const swaggerDocument = require('../swagger.json')
 const swaggerOptions = {
     customCss: '.swagger-ui .topbar { display: none }'
 }
-const swaggerDocument = YAML.load('./openapi.yaml')
 
 const indexRouter = require('../config/routes/index')
 const usersRouter = require('../config/routes/users')
@@ -30,6 +30,9 @@ app.use(cookieParser())
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/cars', carsRouter)
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions))
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions))
+app.use('/docs-json', (req, res) => {
+    res.json(swaggerDocument)
+})
 
 module.exports = app
