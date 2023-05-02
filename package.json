@@ -32,8 +32,7 @@
         "pg-hstore": "^2.3.4",
         "sequelize": "^6.31.0",
         "sequelize-cli": "^6.6.0",
-        "swagger-ui-express": "^4.6.2",
-        "yamljs": "^0.3.0"
+        "swagger-ui-express": "^4.6.2"
     },
     "devDependencies": {
         "eslint": "^8.38.0",
