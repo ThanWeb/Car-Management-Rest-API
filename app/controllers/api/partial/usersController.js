@@ -107,7 +107,7 @@ module.exports = {
             if (!user[0]) {
                 return res.status(403).json({
                     status: 'FAILED',
-                    message: 'Sesi Login telah expired, silahkan login ulang'
+                    message: 'Sesi login telah expired, silahkan login ulang'
                 })
             }
 
@@ -115,7 +115,7 @@ module.exports = {
                 if (err) {
                     return res.status(403).json({
                         status: 'FAILED',
-                        message: 'Sesi Login telah expired, silahkan login ulang'
+                        message: 'Sesi login telah expired, silahkan login ulang'
                     })
                 }
 
@@ -149,6 +149,7 @@ module.exports = {
         const { id } = user[0]
         try {
             await usersService.logout(id)
+            res.clearCookie('refreshToken')
             return res.status(200).json({
                 status: 'SUCCESS',
                 message: 'Berhasil logout'
@@ -213,29 +214,22 @@ module.exports = {
     async profile (req, res) {
         try {
             const refreshToken = req.cookies.refreshToken
-            if (refreshToken === null || refreshToken === undefined) {
-                return res.status(401).json({
-                    status: 'FAILED',
-                    message: 'Silahkan Login'
-                })
-            }
-
             const user = await usersService.findRefreshToken(refreshToken)
             if (!user[0]) {
                 return res.status(403).json({
                     status: 'FAILED',
-                    message: 'Sesi Login telah expired, silahkan login ulang'
-                })
-            } else {
-                const { email, role } = user[0]
-                return res.status(200).json({
-                    sstatus: 'SUCCESS',
-                    profile: {
-                        email,
-                        role
-                    }
+                    message: 'Sesi login telah expired, silahkan login ulang'
                 })
             }
+
+            const { email, role } = user[0]
+            return res.status(200).json({
+                sstatus: 'SUCCESS',
+                profile: {
+                    email,
+                    role
+                }
+            })
         } catch (err) {
             console.log(err)
         }
