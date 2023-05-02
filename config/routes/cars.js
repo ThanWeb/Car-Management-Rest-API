@@ -8,6 +8,6 @@ router.get('/', controllers.api.cars.list)
 router.post('/add', verifyToken, controllers.api.cars.add)
 router.put('/edit/:id', verifyToken, controllers.api.cars.edit)
 router.get('/detail/:id', verifyToken, controllers.api.cars.detail)
-// router.delete('/delete', verifyToken, controllers.api.cars.delete)
+router.delete('/delete/:id', verifyToken, controllers.api.cars.delete)
 
 module.exports = router

@@ -22,5 +22,8 @@ module.exports = {
     },
     edit (id, newValues) {
         return carsRepository.edit(id, newValues)
+    },
+    delete (carId, deletedBy) {
+        return carsRepository.delete(carId, deletedBy)
     }
 }

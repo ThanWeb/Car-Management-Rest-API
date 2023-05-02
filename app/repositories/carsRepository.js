@@ -13,7 +13,11 @@ module.exports = {
         })
     },
     getTotalCars () {
-        return Cars.count()
+        return Cars.count({
+            where: {
+                isDeleted: false
+            }
+        })
     },
     add (createArgs) {
         return Cars.create(createArgs)
@@ -32,6 +36,13 @@ module.exports = {
             where: {
                 id,
                 isDeleted: false
+            }
+        })
+    },
+    delete (id, deletedBy) {
+        Cars.update({ deletedBy, isDeleted: true }, {
+            where: {
+                id
             }
         })
     }
