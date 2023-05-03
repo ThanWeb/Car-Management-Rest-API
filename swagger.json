@@ -809,60 +809,60 @@
         },
         "/users/register": {
             "post": {
-            "tags": [
-                "User"
-            ],
-            "responses": {
-                "201": {
-                "description": "Register member",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "SUCCESS"
-                        },
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                            "email": {
-                                "type": "string",
-                                "example": "member@gmail.com"
-                            },
-                            "role": {
-                                "type": "string",
-                                "example": "member"
+                "tags": [
+                    "User"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Register member",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "SUCCESS"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "member@gmail.com"
+                                                },
+                                                "role": {
+                                                    "type": "string",
+                                                    "example": "member"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request for register member",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "FAILED"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Password dan Konfirmasi Password berbeda"
+                                        }
+                                    }
+                                }
                             }
                         }
-                        }
-                    }
                     }
                 }
-                },
-                "400": {
-                "description": "Bad request for register member",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "FAILED"
-                        },
-                        "message": {
-                            "type": "string",
-                            "example": "Email dan password berbeda"
-                        }
-                        }
-                    }
-                    }
-                }
-                }
-            }
             }
         },
         "/users/register-admin": {
