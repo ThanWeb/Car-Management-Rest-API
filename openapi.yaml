@@ -28,30 +28,18 @@ paths:
                     items:
                       type: object
                       properties:
-                        id:
-                          type: integer
-                          example: 1
                         name:
                           type: string
                           example: Toyota Avanza
-                        owner:
-                          type: integer
-                          example: 1
-                        lastEditedBy:
-                          type: integer
-                          example: 1
-                        deletedBy:
-                          type: integer
-                          example: 1
-                        isDeleted:
-                          type: boolean
-                          example: false
-                        createdAt:
+                        type:
                           type: string
-                          example: '2023-05-01T07:52:31.130Z'
-                        updatedAt:
+                          example: Family
+                        size:
                           type: string
-                          example: '2023-05-01T07:52:31.130Z'
+                          example: Medium
+                        rentPerDay:
+                          type: integer
+                          example: 150000
                   meta:
                     type: object
                     properties:
