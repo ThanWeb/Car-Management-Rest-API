@@ -106,7 +106,18 @@
                             "type": "integer"
                         },
                         "required": true,
-                        "description": "Numeric ID of the car to get"
+                        "description": "Numeric ID of the car to get",
+                        "example": 1
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "Authorization token",
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJhcGlzdXBlcmFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY4MzExNTI2MCwiZXhwIjoxNjgzMTE1ODYwfQ.MgKx3zjoaM3gg2-nxX1lexYeRAAi2WRw-XZj-_bzlxs"
                     }
                 ],
                 "responses": {
@@ -222,6 +233,18 @@
             "post": {
                 "tags": [
                     "Car"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "Authorization token",
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJhcGlzdXBlcmFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY4MzExNTI2MCwiZXhwIjoxNjgzMTE1ODYwfQ.MgKx3zjoaM3gg2-nxX1lexYeRAAi2WRw-XZj-_bzlxs"
+                    }
                 ],
                 "requestBody": {
                     "description": "Payload for insert new car",
@@ -346,7 +369,18 @@
                             "type": "integer"
                         },
                         "required": true,
-                        "description": "Numeric ID of the car that wants to edit"
+                        "description": "Numeric ID of the car that wants to edit",
+                        "example": 1
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "Authorization token",
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJhcGlzdXBlcmFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY4MzExNTI2MCwiZXhwIjoxNjgzMTE1ODYwfQ.MgKx3zjoaM3gg2-nxX1lexYeRAAi2WRw-XZj-_bzlxs"
                     }
                 ],
                 "requestBody": {
@@ -475,7 +509,18 @@
                             "type": "integer"
                         },
                         "required": true,
-                        "description": "Numeric ID of the car that wants to delete"
+                        "description": "Numeric ID of the car that wants to delete",
+                        "example": 1
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "Authorization token",
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJhcGlzdXBlcmFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY4MzExNTI2MCwiZXhwIjoxNjgzMTE1ODYwfQ.MgKx3zjoaM3gg2-nxX1lexYeRAAi2WRw-XZj-_bzlxs"
                     }
                 ],
                 "responses": {
