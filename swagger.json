@@ -609,137 +609,137 @@
         },
         "/users/profile": {
             "get": {
-            "tags": [
-                "User"
-            ],
-            "parameters": [
-                {
-                    "in": "header",
-                    "name": "Authorization",
-                    "schema": {
-                        "type": "string"
+                "tags": [
+                    "User"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "Authorization token",
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJhcGlzdXBlcmFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY4MzExNTI2MCwiZXhwIjoxNjgzMTE1ODYwfQ.MgKx3zjoaM3gg2-nxX1lexYeRAAi2WRw-XZj-_bzlxs"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User profile",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "SUCCESS"
+                                        },
+                                        "profile": {
+                                            "type": "object",
+                                            "properties": {
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "admin@gmail.com"
+                                                },
+                                                "role": {
+                                                    "type": "string",
+                                                    "example": "admin"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     },
-                    "required": true,
-                    "description": "Authorization token",
-                    "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJhcGlzdXBlcmFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY4MzExNTI2MCwiZXhwIjoxNjgzMTE1ODYwfQ.MgKx3zjoaM3gg2-nxX1lexYeRAAi2WRw-XZj-_bzlxs"
-                }
-            ],
-            "responses": {
-                "200": {
-                "description": "User profile",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "SUCCESS"
-                        },
-                        "profile": {
-                            "type": "object",
-                            "properties": {
-                            "email": {
-                                "type": "string",
-                                "example": "admin@gmail.com"
-                            },
-                            "role": {
-                                "type": "string",
-                                "example": "admin"
-                            }
+                    "400": {
+                        "description": "Bad request for get user profile",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "FAILED"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Token invalid"
+                                        }
+                                    }
+                                }
                             }
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "FAILED"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sesi login telah expired, silahkan login ulang"
+                                        }
+                                    }
+                                }
+                            }
                         }
-                    }
                     }
                 }
-                },
-                "400": {
-                "description": "Bad request for get user profile",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "FAILED"
-                        },
-                        "message": {
-                            "type": "string",
-                            "example": "Token invalid"
-                        }
-                        }
-                    }
-                    }
-                }
-                },
-                "401": {
-                "description": "Unauthorized",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "FAILED"
-                        },
-                        "message": {
-                            "type": "string",
-                            "example": "Sesi login telah expired, silahkan login ulang"
-                        }
-                        }
-                    }
-                    }
-                }
-                }
-            }
             }
         },
         "/users/token": {
             "get": {
-            "tags": [
-                "User"
-            ],
-            "responses": {
-                "200": {
-                "description": "Refresh token",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "accessToken": {
-                            "type": "string",
-                            "example": "thisisjustanexampleforrandomtoken"
+                "tags": [
+                    "User"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Refresh token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "accessToken": {
+                                            "type": "string",
+                                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJhcGlzdXBlcmFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY4MzExMjQwOCwiZXhwIjoxNjgzMTEzMDA4fQ.PHVlSlo9BH-aTJLeh1QQSzBZRCMpbj57LiV3Gxl_v4o"
+                                        }
+                                    }
+                                }
+                            }
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "FAILED"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sesi login telah expired, silahkan login ulang"
+                                        }
+                                    }
+                                }
+                            }
                         }
-                    }
                     }
                 }
-                },
-                "401": {
-                "description": "Unauthorized",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "FAILED"
-                        },
-                        "message": {
-                            "type": "string",
-                            "example": "Sesi login telah expired, silahkan login ulang"
-                        }
-                        }
-                    }
-                    }
-                }
-                }
-            }
             }
         },
         "/users/login": {
