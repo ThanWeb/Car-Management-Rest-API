@@ -1,864 +1,859 @@
 {
     "openapi": "3.0.0",
     "info": {
-      "title": "Car Management Rest API",
-      "version": "0.0.1"
+        "title": "Car Management Rest API",
+        "version": "0.0.1"
     },
     "tags": [
-      {
-        "name": "Car",
-        "description": "Contain all services for create, read, update or delete data of cars"
-      },
-      {
-        "name": "User",
-        "description": "Contain all services for login, register or logout account"
-      }
+        {
+            "name": "Car",
+            "description": "Contain all services for create, read, update or delete data of cars"
+        },
+        {
+            "name": "User",
+            "description": "Contain all services for login, register or logout account"
+        }
     ],
     "paths": {
-      "/cars": {
-        "get": {
-          "tags": [
-            "Car"
-          ],
-          "responses": {
-            "200": {
-              "description": "List of cars",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "SUCCESS"
-                      },
-                      "cars": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "integer",
-                              "example": 1
-                            },
-                            "name": {
-                              "type": "string",
-                              "example": "Toyota Avanza"
-                            },
-                            "owner": {
-                              "type": "integer",
-                              "example": 1
-                            },
-                            "lastEditedBy": {
-                              "type": "integer",
-                              "example": 1
-                            },
-                            "deletedBy": {
-                              "type": "integer",
-                              "example": 1
-                            },
-                            "isDeleted": {
-                              "type": "boolean",
-                              "example": false
-                            },
-                            "createdAt": {
-                              "type": "string",
-                              "example": "2023-05-01T07:52:31.130Z"
-                            },
-                            "updatedAt": {
-                              "type": "string",
-                              "example": "2023-05-01T07:52:31.130Z"
+        "/cars": {
+            "get": {
+                "tags": [
+                    "Car"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of cars",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "SUCCESS"
+                                        },
+                                        "cars": {
+                                            "type": "array",
+                                            "items": {
+                                            "type": "object",
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Toyota Avanza"
+                                                    },
+                                                    "type": {
+                                                        "type": "string",
+                                                        "example": "Family"
+                                                    },
+                                                    "size": {
+                                                        "type": "string",
+                                                        "example": "Medium"
+                                                    },
+                                                    "rentPerDay": {
+                                                        "type": "integer",
+                                                        "example": 150000
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "meta": {
+                                            "type": "object",
+                                            "properties": {
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
-                          }
                         }
-                      },
-                      "meta": {
+                    },
+                    "400": {
+                        "description": "Error list of cars",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "FAILED"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error Message"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cars/detail/{id}": {
+            "get": {
+                "tags": [
+                    "Car"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true,
+                        "description": "Numeric ID of the car to get"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Car detail",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "SUCCESS"
+                                        },
+                                        "car": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Rubicon"
+                                                },
+                                                "type": {
+                                                    "type": "string",
+                                                    "example": "Adventure"
+                                                },
+                                                "size": {
+                                                    "type": "string",
+                                                    "example": "Large"
+                                                },
+                                                "rentPerDay": {
+                                                    "type": "integer",
+                                                    "example": 2000000
+                                                },
+                                                "owner": {
+                                                    "type": "string",
+                                                    "example": "admin@gmail.com"
+                                                },
+                                                "ownerRole": {
+                                                    "type": "string",
+                                                    "example": "admin"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request for car detail",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "FAILED"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Token invalid"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                    "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "FAILED"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Hanya akun dengan role admin dan superadmin yang bisa melihat data detail dari mobil"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                    "description": "Car not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "FAILED"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Mobil tidak ditemukan"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cars/add": {
+            "post": {
+            "tags": [
+                "Car"
+            ],
+            "responses": {
+                "201": {
+                "description": "Insert new car",
+                "content": {
+                    "application/json": {
+                    "schema": {
                         "type": "object",
                         "properties": {
-                          "total": {
-                            "type": "integer",
-                            "example": 1
-                          }
+                        "status": {
+                            "type": "string",
+                            "example": "SUCCESS"
+                        },
+                        "car": {
+                            "type": "object",
+                            "properties": {
+                            "name": {
+                                "type": "string",
+                                "example": "Toyota Supra"
+                            },
+                            "type": {
+                                "type": "string",
+                                "example": "Sport"
+                            },
+                            "size": {
+                                "type": "string",
+                                "example": "Medium"
+                            },
+                            "rentPerDay": {
+                                "type": "integer",
+                                "example": 1000000
+                            }
+                            }
                         }
-                      }
+                        }
                     }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Error list of cars",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Error Message"
-                      }
                     }
-                  }
                 }
-              }
-            }
-          }
-        }
-      },
-      "/cars/detail:id": {
-        "get": {
-          "tags": [
-            "Car"
-          ],
-          "responses": {
-            "200": {
-              "description": "Car detail",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "SUCCESS"
-                      },
-                      "car": {
+                },
+                "400": {
+                "description": "Bad request for insert new car",
+                "content": {
+                    "application/json": {
+                    "schema": {
                         "type": "object",
                         "properties": {
-                          "name": {
+                        "status": {
                             "type": "string",
-                            "example": "Rubicon"
-                          },
-                          "type": {
+                            "example": "FAILED"
+                        },
+                        "message": {
                             "type": "string",
-                            "example": "Adventure"
-                          },
-                          "size": {
-                            "type": "string",
-                            "example": "Large"
-                          },
-                          "rentPerDay": {
-                            "type": "integer",
-                            "example": 2000000
-                          },
-                          "owner": {
-                            "type": "string",
-                            "example": "admin@gmail.com"
-                          },
-                          "ownerRole": {
-                            "type": "string",
-                            "example": "admin"
-                          }
+                            "example": "Nilai Rent Per Day harus angka"
                         }
-                      }
+                        }
                     }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Bad request for car detail",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Token invalid"
-                      }
                     }
-                  }
                 }
-              }
-            },
-            "401": {
-              "description": "Unauthorized",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Hanya akun dengan role admin dan superadmin yang bisa melihat data detail dari mobil"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "404": {
-              "description": "Car not found",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Mobil tidak ditemukan"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "/cars/add": {
-        "post": {
-          "tags": [
-            "Car"
-          ],
-          "responses": {
-            "201": {
-              "description": "Insert new car",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "SUCCESS"
-                      },
-                      "car": {
+                },
+                "401": {
+                "description": "Unauthorized",
+                "content": {
+                    "application/json": {
+                    "schema": {
                         "type": "object",
                         "properties": {
-                          "name": {
+                        "status": {
                             "type": "string",
-                            "example": "Toyota Supra"
-                          },
-                          "type": {
+                            "example": "FAILED"
+                        },
+                        "message": {
                             "type": "string",
-                            "example": "Sport"
-                          },
-                          "size": {
-                            "type": "string",
-                            "example": "Medium"
-                          },
-                          "rentPerDay": {
-                            "type": "integer",
-                            "example": 1000000
-                          }
+                            "example": "Hanya akun dengan role admin dan superadmin yang bisa menambah data mobil"
                         }
-                      }
+                        }
                     }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Bad request for insert new car",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Nilai Rent Per Day harus angka"
-                      }
                     }
-                  }
                 }
-              }
-            },
-            "401": {
-              "description": "Unauthorized",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Hanya akun dengan role admin dan superadmin yang bisa menambah data mobil"
-                      }
-                    }
-                  }
                 }
-              }
             }
-          }
-        }
-      },
-      "/cars/edit:id": {
-        "put": {
-          "tags": [
-            "Car"
-          ],
-          "responses": {
-            "202": {
-              "description": "Edit car",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "SUCCESS"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Data mobil berhasil diubah"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Bad request for edit car",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Nilai Rent Per Day harus angka"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "401": {
-              "description": "Unauthorized",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Hanya akun dengan role admin dan superadmin yang bisa mengubah data mobil"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "404": {
-              "description": "Car not found",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Mobil tidak ditemukan"
-                      }
-                    }
-                  }
-                }
-              }
             }
-          }
-        }
-      },
-      "/cars/delete:id": {
-        "delete": {
-          "tags": [
-            "Car"
-          ],
-          "responses": {
-            "202": {
-              "description": "Delete car",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "SUCCESS"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Data mobil berhasil dihapus"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Bad request for edit car",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Token invalid"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "401": {
-              "description": "Unauthorized",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Hanya akun dengan role admin dan superadmin yang bisa menghapus data mobil"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "404": {
-              "description": "Car not found",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Mobil tidak ditemukan"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "/users/profile": {
-        "get": {
-          "tags": [
-            "User"
-          ],
-          "responses": {
-            "200": {
-              "description": "User profile",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "SUCCESS"
-                      },
-                      "profile": {
+        },
+        "/cars/edit:id": {
+            "put": {
+            "tags": [
+                "Car"
+            ],
+            "responses": {
+                "202": {
+                "description": "Edit car",
+                "content": {
+                    "application/json": {
+                    "schema": {
                         "type": "object",
                         "properties": {
-                          "email": {
+                        "status": {
                             "type": "string",
-                            "example": "admin@gmail.com"
-                          },
-                          "role": {
+                            "example": "SUCCESS"
+                        },
+                        "message": {
                             "type": "string",
-                            "example": "admin"
-                          }
+                            "example": "Data mobil berhasil diubah"
                         }
-                      }
+                        }
                     }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Bad request for get user profile",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Token invalid"
-                      }
                     }
-                  }
                 }
-              }
-            },
-            "401": {
-              "description": "Unauthorized",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Sesi login telah expired, silahkan login ulang"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "/users/token": {
-        "get": {
-          "tags": [
-            "User"
-          ],
-          "responses": {
-            "200": {
-              "description": "Refresh token",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "accessToken": {
-                        "type": "string",
-                        "example": "thisisjustanexampleforrandomtoken"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "401": {
-              "description": "Unauthorized",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Sesi login telah expired, silahkan login ulang"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "/users/login": {
-        "post": {
-          "tags": [
-            "User"
-          ],
-          "responses": {
-            "200": {
-              "description": "Login",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "accessToken": {
-                        "type": "string",
-                        "example": "thisisjustanexampleforrandomtoken"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Bad request for login",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Password salah"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "404": {
-              "description": "Account not found",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Email belum terdaftar"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "/users/register": {
-        "post": {
-          "tags": [
-            "User"
-          ],
-          "responses": {
-            "201": {
-              "description": "Register member",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "SUCCESS"
-                      },
-                      "data": {
+                },
+                "400": {
+                "description": "Bad request for edit car",
+                "content": {
+                    "application/json": {
+                    "schema": {
                         "type": "object",
                         "properties": {
-                          "email": {
+                        "status": {
                             "type": "string",
-                            "example": "member@gmail.com"
-                          },
-                          "role": {
+                            "example": "FAILED"
+                        },
+                        "message": {
                             "type": "string",
-                            "example": "member"
-                          }
+                            "example": "Nilai Rent Per Day harus angka"
                         }
-                      }
+                        }
                     }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Bad request for register member",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Email dan password berbeda"
-                      }
                     }
-                  }
                 }
-              }
-            }
-          }
-        }
-      },
-      "/users/register-admin": {
-        "post": {
-          "tags": [
-            "User"
-          ],
-          "responses": {
-            "201": {
-              "description": "Register admin",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "SUCCESS"
-                      },
-                      "data": {
+                },
+                "401": {
+                "description": "Unauthorized",
+                "content": {
+                    "application/json": {
+                    "schema": {
                         "type": "object",
                         "properties": {
-                          "email": {
+                        "status": {
                             "type": "string",
-                            "example": "admin@gmail.com"
-                          },
-                          "role": {
+                            "example": "FAILED"
+                        },
+                        "message": {
                             "type": "string",
-                            "example": "admin"
-                          }
+                            "example": "Hanya akun dengan role admin dan superadmin yang bisa mengubah data mobil"
                         }
-                      }
+                        }
                     }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Bad request for register admin",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Email dan password berbeda"
-                      }
                     }
-                  }
                 }
-              }
-            },
-            "401": {
-              "description": "Unauthorized",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Hanya akun dengan role superadmin yang bisa membuat akun admin"
-                      }
+                },
+                "404": {
+                "description": "Car not found",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "status": {
+                            "type": "string",
+                            "example": "FAILED"
+                        },
+                        "message": {
+                            "type": "string",
+                            "example": "Mobil tidak ditemukan"
+                        }
+                        }
                     }
-                  }
+                    }
                 }
-              }
+                }
             }
-          }
-        }
-      },
-      "/users/logout": {
-        "delete": {
-          "tags": [
-            "User"
-          ],
-          "responses": {
-            "200": {
-              "description": "Logout",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "SUCCESS"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Berhasil logout"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Bad request for register admin",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "status": {
-                        "type": "string",
-                        "example": "FAILED"
-                      },
-                      "message": {
-                        "type": "string",
-                        "example": "Tidak ada aktivitas login"
-                      }
-                    }
-                  }
-                }
-              }
             }
-          }
+        },
+        "/cars/delete:id": {
+            "delete": {
+            "tags": [
+                "Car"
+            ],
+            "responses": {
+                "202": {
+                "description": "Delete car",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "status": {
+                            "type": "string",
+                            "example": "SUCCESS"
+                        },
+                        "message": {
+                            "type": "string",
+                            "example": "Data mobil berhasil dihapus"
+                        }
+                        }
+                    }
+                    }
+                }
+                },
+                "400": {
+                "description": "Bad request for edit car",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "status": {
+                            "type": "string",
+                            "example": "FAILED"
+                        },
+                        "message": {
+                            "type": "string",
+                            "example": "Token invalid"
+                        }
+                        }
+                    }
+                    }
+                }
+                },
+                "401": {
+                "description": "Unauthorized",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "status": {
+                            "type": "string",
+                            "example": "FAILED"
+                        },
+                        "message": {
+                            "type": "string",
+                            "example": "Hanya akun dengan role admin dan superadmin yang bisa menghapus data mobil"
+                        }
+                        }
+                    }
+                    }
+                }
+                },
+                "404": {
+                "description": "Car not found",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "status": {
+                            "type": "string",
+                            "example": "FAILED"
+                        },
+                        "message": {
+                            "type": "string",
+                            "example": "Mobil tidak ditemukan"
+                        }
+                        }
+                    }
+                    }
+                }
+                }
+            }
+            }
+        },
+        "/users/profile": {
+            "get": {
+            "tags": [
+                "User"
+            ],
+            "responses": {
+                "200": {
+                "description": "User profile",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "status": {
+                            "type": "string",
+                            "example": "SUCCESS"
+                        },
+                        "profile": {
+                            "type": "object",
+                            "properties": {
+                            "email": {
+                                "type": "string",
+                                "example": "admin@gmail.com"
+                            },
+                            "role": {
+                                "type": "string",
+                                "example": "admin"
+                            }
+                            }
+                        }
+                        }
+                    }
+                    }
+                }
+                },
+                "400": {
+                "description": "Bad request for get user profile",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "status": {
+                            "type": "string",
+                            "example": "FAILED"
+                        },
+                        "message": {
+                            "type": "string",
+                            "example": "Token invalid"
+                        }
+                        }
+                    }
+                    }
+                }
+                },
+                "401": {
+                "description": "Unauthorized",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "status": {
+                            "type": "string",
+                            "example": "FAILED"
+                        },
+                        "message": {
+                            "type": "string",
+                            "example": "Sesi login telah expired, silahkan login ulang"
+                        }
+                        }
+                    }
+                    }
+                }
+                }
+            }
+            }
+        },
+        "/users/token": {
+            "get": {
+            "tags": [
+                "User"
+            ],
+            "responses": {
+                "200": {
+                "description": "Refresh token",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "accessToken": {
+                            "type": "string",
+                            "example": "thisisjustanexampleforrandomtoken"
+                        }
+                        }
+                    }
+                    }
+                }
+                },
+                "401": {
+                "description": "Unauthorized",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "status": {
+                            "type": "string",
+                            "example": "FAILED"
+                        },
+                        "message": {
+                            "type": "string",
+                            "example": "Sesi login telah expired, silahkan login ulang"
+                        }
+                        }
+                    }
+                    }
+                }
+                }
+            }
+            }
+        },
+        "/users/login": {
+            "post": {
+            "tags": [
+                "User"
+            ],
+            "responses": {
+                "200": {
+                "description": "Login",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "accessToken": {
+                            "type": "string",
+                            "example": "thisisjustanexampleforrandomtoken"
+                        }
+                        }
+                    }
+                    }
+                }
+                },
+                "400": {
+                "description": "Bad request for login",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "status": {
+                            "type": "string",
+                            "example": "FAILED"
+                        },
+                        "message": {
+                            "type": "string",
+                            "example": "Password salah"
+                        }
+                        }
+                    }
+                    }
+                }
+                },
+                "404": {
+                "description": "Account not found",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "status": {
+                            "type": "string",
+                            "example": "FAILED"
+                        },
+                        "message": {
+                            "type": "string",
+                            "example": "Email belum terdaftar"
+                        }
+                        }
+                    }
+                    }
+                }
+                }
+            }
+            }
+        },
+        "/users/register": {
+            "post": {
+            "tags": [
+                "User"
+            ],
+            "responses": {
+                "201": {
+                "description": "Register member",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "status": {
+                            "type": "string",
+                            "example": "SUCCESS"
+                        },
+                        "data": {
+                            "type": "object",
+                            "properties": {
+                            "email": {
+                                "type": "string",
+                                "example": "member@gmail.com"
+                            },
+                            "role": {
+                                "type": "string",
+                                "example": "member"
+                            }
+                            }
+                        }
+                        }
+                    }
+                    }
+                }
+                },
+                "400": {
+                "description": "Bad request for register member",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "status": {
+                            "type": "string",
+                            "example": "FAILED"
+                        },
+                        "message": {
+                            "type": "string",
+                            "example": "Email dan password berbeda"
+                        }
+                        }
+                    }
+                    }
+                }
+                }
+            }
+            }
+        },
+        "/users/register-admin": {
+            "post": {
+            "tags": [
+                "User"
+            ],
+            "responses": {
+                "201": {
+                "description": "Register admin",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "status": {
+                            "type": "string",
+                            "example": "SUCCESS"
+                        },
+                        "data": {
+                            "type": "object",
+                            "properties": {
+                            "email": {
+                                "type": "string",
+                                "example": "admin@gmail.com"
+                            },
+                            "role": {
+                                "type": "string",
+                                "example": "admin"
+                            }
+                            }
+                        }
+                        }
+                    }
+                    }
+                }
+                },
+                "400": {
+                "description": "Bad request for register admin",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "status": {
+                            "type": "string",
+                            "example": "FAILED"
+                        },
+                        "message": {
+                            "type": "string",
+                            "example": "Email dan password berbeda"
+                        }
+                        }
+                    }
+                    }
+                }
+                },
+                "401": {
+                "description": "Unauthorized",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "status": {
+                            "type": "string",
+                            "example": "FAILED"
+                        },
+                        "message": {
+                            "type": "string",
+                            "example": "Hanya akun dengan role superadmin yang bisa membuat akun admin"
+                        }
+                        }
+                    }
+                    }
+                }
+                }
+            }
+            }
+        },
+        "/users/logout": {
+            "delete": {
+            "tags": [
+                "User"
+            ],
+            "responses": {
+                "200": {
+                "description": "Logout",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "status": {
+                            "type": "string",
+                            "example": "SUCCESS"
+                        },
+                        "message": {
+                            "type": "string",
+                            "example": "Berhasil logout"
+                        }
+                        }
+                    }
+                    }
+                }
+                },
+                "400": {
+                "description": "Bad request for register admin",
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                        "status": {
+                            "type": "string",
+                            "example": "FAILED"
+                        },
+                        "message": {
+                            "type": "string",
+                            "example": "Tidak ada aktivitas login"
+                        }
+                        }
+                    }
+                    }
+                }
+                }
+            }
+            }
         }
-      }
     }
-  }
+}

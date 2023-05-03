@@ -59,10 +59,17 @@ paths:
                   message:
                     type: string
                     example: Error Message
-  /cars/detail:id:
+  /cars/detail/{id}:
     get:
       tags:
         - Car
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the car to get
       responses:
         '200':
           description: Car detail
