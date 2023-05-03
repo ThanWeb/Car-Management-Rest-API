@@ -744,67 +744,67 @@
         },
         "/users/login": {
             "post": {
-            "tags": [
-                "User"
-            ],
-            "responses": {
-                "200": {
-                "description": "Login",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "accessToken": {
-                            "type": "string",
-                            "example": "thisisjustanexampleforrandomtoken"
+                "tags": [
+                    "User"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "accessToken": {
+                                            "type": "string",
+                                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJhcGlzdXBlcmFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY4MzExMjQwOCwiZXhwIjoxNjgzMTEzMDA4fQ.PHVlSlo9BH-aTJLeh1QQSzBZRCMpbj57LiV3Gxl_v4o"
+                                        }
+                                    }
+                                }
+                            }
                         }
+                    },
+                    "400": {
+                        "description": "Bad request for login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "FAILED"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Password salah"
+                                        }
+                                    }
+                                }
+                            }
                         }
-                    }
+                    },
+                    "404": {
+                        "description": "Account not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "FAILED"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Email belum terdaftar"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-                },
-                "400": {
-                "description": "Bad request for login",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "FAILED"
-                        },
-                        "message": {
-                            "type": "string",
-                            "example": "Password salah"
-                        }
-                        }
-                    }
-                    }
-                }
-                },
-                "404": {
-                "description": "Account not found",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "FAILED"
-                        },
-                        "message": {
-                            "type": "string",
-                            "example": "Email belum terdaftar"
-                        }
-                        }
-                    }
-                    }
-                }
-                }
-            }
             }
         },
         "/users/register": {
@@ -957,51 +957,51 @@
         },
         "/users/logout": {
             "delete": {
-            "tags": [
-                "User"
-            ],
-            "responses": {
-                "200": {
-                "description": "Logout",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "SUCCESS"
-                        },
-                        "message": {
-                            "type": "string",
-                            "example": "Berhasil logout"
+                "tags": [
+                    "User"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Logout",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "SUCCESS"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Berhasil logout"
+                                        }
+                                    }
+                                }
+                            }
                         }
+                    },
+                    "400": {
+                        "description": "Bad request for logout",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "FAILED"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Tidak ada aktivitas login"
+                                        }
+                                    }
+                                }
+                            }
                         }
-                    }
                     }
                 }
-                },
-                "400": {
-                "description": "Bad request for register admin",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "FAILED"
-                        },
-                        "message": {
-                            "type": "string",
-                            "example": "Tidak ada aktivitas login"
-                        }
-                        }
-                    }
-                    }
-                }
-                }
-            }
             }
         }
     }
