@@ -333,93 +333,133 @@
                 }
             }
         },
-        "/cars/edit:id": {
+        "/cars/edit/{id}": {
             "put": {
-            "tags": [
-                "Car"
-            ],
-            "responses": {
-                "202": {
-                "description": "Edit car",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "SUCCESS"
+                "tags": [
+                    "Car"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
                         },
-                        "message": {
-                            "type": "string",
-                            "example": "Data mobil berhasil diubah"
-                        }
+                        "required": true,
+                        "description": "Numeric ID of the car that wants to edit"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Payload for edit car",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Toyota Corolla"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "Family"
+                                    },
+                                    "size": {
+                                        "type": "string",
+                                        "example": "Medium"
+                                    },
+                                    "rentPerDay": {
+                                        "type": "integer",
+                                        "example": 500000
+                                    }
+                                }
+                            }
                         }
                     }
-                    }
-                }
                 },
-                "400": {
-                "description": "Bad request for edit car",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "FAILED"
-                        },
-                        "message": {
-                            "type": "string",
-                            "example": "Nilai Rent Per Day harus angka"
+                "responses": {
+                    "202": {
+                        "description": "Edit existing car",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "SUCCESS"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data mobil berhasil diubah"
+                                        }
+                                    }
+                                }
+                            }
                         }
+                    },
+                    "400": {
+                        "description": "Bad request for edit existing car",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "FAILED"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Nilai Rent Per Day harus angka"
+                                        }
+                                    }
+                                }
+                            }
                         }
-                    }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "FAILED"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Hanya akun dengan role admin dan superadmin yang bisa mengubah data mobil"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Car not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "FAILED"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Mobil tidak ditemukan"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-                },
-                "401": {
-                "description": "Unauthorized",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "FAILED"
-                        },
-                        "message": {
-                            "type": "string",
-                            "example": "Hanya akun dengan role admin dan superadmin yang bisa mengubah data mobil"
-                        }
-                        }
-                    }
-                    }
-                }
-                },
-                "404": {
-                "description": "Car not found",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "FAILED"
-                        },
-                        "message": {
-                            "type": "string",
-                            "example": "Mobil tidak ditemukan"
-                        }
-                        }
-                    }
-                    }
-                }
-                }
-            }
             }
         },
         "/cars/delete:id": {
