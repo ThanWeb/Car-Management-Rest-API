@@ -51,8 +51,14 @@ module.exports = {
     },
     async login (req, res) {
         const { email, password } = req.body
+        const refreshToken = req.cookies.refreshToken
 
-        if (!email || !password) {
+        if (refreshToken) {
+            res.status(400).json({
+                status: 'FAILED',
+                message: 'Anda sudah login'
+            })
+        } else if (!email || !password) {
             res.status(400).json({
                 status: 'FAILED',
                 message: 'Lengkapi Email dan Password'
