@@ -220,88 +220,117 @@
         },
         "/cars/add": {
             "post": {
-            "tags": [
-                "Car"
-            ],
-            "responses": {
-                "201": {
-                "description": "Insert new car",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "SUCCESS"
-                        },
-                        "car": {
-                            "type": "object",
-                            "properties": {
-                            "name": {
-                                "type": "string",
-                                "example": "Toyota Supra"
-                            },
-                            "type": {
-                                "type": "string",
-                                "example": "Sport"
-                            },
-                            "size": {
-                                "type": "string",
-                                "example": "Medium"
-                            },
-                            "rentPerDay": {
-                                "type": "integer",
-                                "example": 1000000
-                            }
+                "tags": [
+                    "Car"
+                ],
+                "requestBody": {
+                    "description": "Payload for insert new car",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Toyota Supra"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "Sport"
+                                    },
+                                    "size": {
+                                        "type": "string",
+                                        "example": "Medium"
+                                    },
+                                    "rentPerDay": {
+                                        "type": "integer",
+                                        "example": 1000000
+                                    }
+                                }
                             }
                         }
-                        }
                     }
-                    }
-                }
                 },
-                "400": {
-                "description": "Bad request for insert new car",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "FAILED"
-                        },
-                        "message": {
-                            "type": "string",
-                            "example": "Nilai Rent Per Day harus angka"
+                "responses": {
+                    "201": {
+                        "description": "Insert new car",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "SUCCESS"
+                                        },
+                                        "car": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Toyota Supra"
+                                                },
+                                                "type": {
+                                                    "type": "string",
+                                                    "example": "Sport"
+                                                },
+                                                "size": {
+                                                    "type": "string",
+                                                    "example": "Medium"
+                                                },
+                                                "rentPerDay": {
+                                                    "type": "integer",
+                                                    "example": 1000000
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
+                    },
+                    "400": {
+                    "description": "Bad request for insert new car",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "status": {
+                                        "type": "string",
+                                        "example": "FAILED"
+                                    },
+                                    "message": {
+                                        "type": "string",
+                                        "example": "Nilai Rent Per Day harus angka"
+                                    }
+                                }
+                            }
                         }
                     }
+                    },
+                    "401": {
+                    "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "FAILED"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Hanya akun dengan role admin dan superadmin yang bisa menambah data mobil"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-                },
-                "401": {
-                "description": "Unauthorized",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "FAILED"
-                        },
-                        "message": {
-                            "type": "string",
-                            "example": "Hanya akun dengan role admin dan superadmin yang bisa menambah data mobil"
-                        }
-                        }
-                    }
-                    }
-                }
-                }
-            }
             }
         },
         "/cars/edit:id": {
