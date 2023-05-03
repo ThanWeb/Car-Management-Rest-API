@@ -867,92 +867,92 @@
         },
         "/users/register-admin": {
             "post": {
-            "tags": [
-                "User"
-            ],
-            "parameters": [
-                {
-                    "in": "header",
-                    "name": "Authorization",
-                    "schema": {
-                        "type": "string"
+                "tags": [
+                    "User"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "Authorization token",
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJhcGlzdXBlcmFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY4MzExNTI2MCwiZXhwIjoxNjgzMTE1ODYwfQ.MgKx3zjoaM3gg2-nxX1lexYeRAAi2WRw-XZj-_bzlxs"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Register admin",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "SUCCESS"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "admin@gmail.com"
+                                                },
+                                                "role": {
+                                                    "type": "string",
+                                                    "example": "admin"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     },
-                    "required": true,
-                    "description": "Authorization token",
-                    "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJhcGlzdXBlcmFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY4MzExNTI2MCwiZXhwIjoxNjgzMTE1ODYwfQ.MgKx3zjoaM3gg2-nxX1lexYeRAAi2WRw-XZj-_bzlxs"
-                }
-            ],
-            "responses": {
-                "201": {
-                "description": "Register admin",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "SUCCESS"
-                        },
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                            "email": {
-                                "type": "string",
-                                "example": "admin@gmail.com"
-                            },
-                            "role": {
-                                "type": "string",
-                                "example": "admin"
-                            }
+                    "400": {
+                        "description": "Bad request for register admin",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "FAILED"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Password dan Konfirmasi Password berbeda"
+                                        }
+                                    }
+                                }
                             }
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "FAILED"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Hanya akun dengan role superadmin yang bisa membuat akun admin"
+                                        }
+                                    }
+                                }
+                            }
                         }
-                    }
                     }
                 }
-                },
-                "400": {
-                "description": "Bad request for register admin",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "FAILED"
-                        },
-                        "message": {
-                            "type": "string",
-                            "example": "Email dan password berbeda"
-                        }
-                        }
-                    }
-                    }
-                }
-                },
-                "401": {
-                "description": "Unauthorized",
-                "content": {
-                    "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                        "status": {
-                            "type": "string",
-                            "example": "FAILED"
-                        },
-                        "message": {
-                            "type": "string",
-                            "example": "Hanya akun dengan role superadmin yang bisa membuat akun admin"
-                        }
-                        }
-                    }
-                    }
-                }
-                }
-            }
             }
         },
         "/users/logout": {
