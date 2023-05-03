@@ -612,6 +612,18 @@
             "tags": [
                 "User"
             ],
+            "parameters": [
+                {
+                    "in": "header",
+                    "name": "Authorization",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "required": true,
+                    "description": "Authorization token",
+                    "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJhcGlzdXBlcmFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY4MzExNTI2MCwiZXhwIjoxNjgzMTE1ODYwfQ.MgKx3zjoaM3gg2-nxX1lexYeRAAi2WRw-XZj-_bzlxs"
+                }
+            ],
             "responses": {
                 "200": {
                 "description": "User profile",
@@ -857,6 +869,18 @@
             "post": {
             "tags": [
                 "User"
+            ],
+            "parameters": [
+                {
+                    "in": "header",
+                    "name": "Authorization",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "required": true,
+                    "description": "Authorization token",
+                    "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJhcGlzdXBlcmFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY4MzExNTI2MCwiZXhwIjoxNjgzMTE1ODYwfQ.MgKx3zjoaM3gg2-nxX1lexYeRAAi2WRw-XZj-_bzlxs"
+                }
             ],
             "responses": {
                 "201": {
