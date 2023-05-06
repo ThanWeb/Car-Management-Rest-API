@@ -747,6 +747,27 @@
                 "tags": [
                     "User"
                 ],
+                "requestBody": {
+                    "description": "Payload for login",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "email",
+                                        "example": "carapisuperadmin@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "thisissuperadmin"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Login",
@@ -812,6 +833,31 @@
                 "tags": [
                     "User"
                 ],
+                "requestBody": {
+                    "description": "Payload for register member",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "email",
+                                        "example": "member@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "12345678"
+                                    },
+                                    "confirmPassword": {
+                                        "type": "string",
+                                        "example": "12345678"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "201": {
                         "description": "Register member",
@@ -882,6 +928,31 @@
                         "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJhcGlzdXBlcmFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY4MzExNTI2MCwiZXhwIjoxNjgzMTE1ODYwfQ.MgKx3zjoaM3gg2-nxX1lexYeRAAi2WRw-XZj-_bzlxs"
                     }
                 ],
+                "requestBody": {
+                    "description": "Payload for register admin",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "email",
+                                        "example": "admin@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "12345678"
+                                    },
+                                    "confirmPassword": {
+                                        "type": "string",
+                                        "example": "12345678"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "201": {
                         "description": "Register admin",
